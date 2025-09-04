@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dscvrdcffp7tf"]
+
+[ext_resource type="PackedScene" uid="uid://hsk66bkbu1r" path="res://scenes/new_raw_value_bar.tscn" id="1_oy6j4"]
+[ext_resource type="Script" uid="uid://cwupuxls4dhdy" path="res://scenes/new_key_bar.gd" id="1_wq050"]
+[ext_resource type="PackedScene" uid="uid://d1201ja7y07mn" path="res://scenes/new_value_bar.tscn" id="3_kiox8"]
+
+[node name="KeyBar" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wq050")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Key" parent="HBoxContainer" instance=ExtResource("1_oy6j4")]
+layout_mode = 2
+
+[node name="Value" parent="HBoxContainer" instance=ExtResource("3_kiox8")]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[connection signal="button_up" from="HBoxContainer/Remove" to="." method="_on_remove_button_up"]

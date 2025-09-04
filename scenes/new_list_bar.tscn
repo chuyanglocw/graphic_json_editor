@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c46e5mdrb5o21"]
+
+[ext_resource type="Script" uid="uid://223tee8bhek1" path="res://scenes/new_list_bar.gd" id="1_i3hcb"]
+
+[node name="ListBar" type="PanelContainer"]
+offset_right = 120.0
+offset_bottom = 40.0
+script = ExtResource("1_i3hcb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Values" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[connection signal="button_up" from="VBoxContainer/Add" to="." method="_on_add_button_up"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://hsk66bkbu1r"]
+
+[node name="RawValueBar" type="LineEdit"]
+offset_right = 68.5625
+offset_bottom = 31.0
+expand_to_text_length = true
