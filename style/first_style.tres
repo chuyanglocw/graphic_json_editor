@@ -1,0 +1,98 @@
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://bhr4jsbwb5ulv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ku4wf"]
+bg_color = Color(0.690196, 0.25098, 0.34902, 0.811765)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa3yy"]
+bg_color = Color(0.839438, 0.555708, 0.608224, 0.384314)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjmh7"]
+bg_color = Color(0.839216, 0.556863, 0.607843, 0.384314)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym0ui"]
+bg_color = Color(0.522418, 0.710074, 0.863602, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="ImageTexture" id="ImageTexture_ym0ui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lgpa"]
+bg_color = Color(0.25098, 0.678431, 0.643137, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rp52b"]
+bg_color = Color(0.251062, 0.677772, 0.641954, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lpyi"]
+bg_color = Color(0.1719, 0.505607, 0.478388, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnyyv"]
+bg_color = Color(0.881482, 0.652928, 0.608175, 0.501961)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ImageTexture" id="ImageTexture_ku4wf"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_fjmh7"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_65cnb"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_7ag57"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r2eq"]
+bg_color = Color(0.701049, 0.34598, 0.303599, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrhau"]
+bg_color = Color(0.823529, 0.458824, 0.411765, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxFlat_ku4wf")
+Button/styles/normal = SubResource("StyleBoxFlat_xa3yy")
+Button/styles/pressed = SubResource("StyleBoxFlat_fjmh7")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_ym0ui")
+OptionButton/icons/arrow = SubResource("ImageTexture_ym0ui")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_6lgpa")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_rp52b")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_6lpyi")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vnyyv")
+PopupMenu/icons/radio_checked = SubResource("ImageTexture_ku4wf")
+PopupMenu/icons/radio_checked_disabled = SubResource("ImageTexture_fjmh7")
+PopupMenu/icons/radio_unchecked = SubResource("ImageTexture_65cnb")
+PopupMenu/icons/radio_unchecked_disabled = SubResource("ImageTexture_7ag57")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_7r2eq")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_mrhau")

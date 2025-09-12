@@ -1,0 +1,187 @@
+[gd_scene load_steps=11 format=3 uid="uid://cucw1u6hc0qho"]
+
+[ext_resource type="Script" uid="uid://eok1lbbclveg" path="res://scripts/clipboard_view.gd" id="1_vk84b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqtik"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.596162, 0.725513, 0.391895, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ImageTexture" id="ImageTexture_j10y5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knybl"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.337255, 0.580392, 0.647059, 0.792157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j10y5"]
+bg_color = Color(1, 1, 1, 0.72549)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vk84b"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.314489, 0.569028, 0.516359, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7tkt"]
+bg_color = Color(0.244297, 0.577225, 0.61676, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g8td"]
+bg_color = Color(0.43953, 0.692204, 0.740801, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_vk84b"]
+Button/styles/hover = SubResource("StyleBoxFlat_tqtik")
+Button/styles/normal = SubResource("StyleBoxFlat_tqtik")
+Button/styles/pressed = SubResource("StyleBoxFlat_tqtik")
+OptionButton/icons/arrow = SubResource("ImageTexture_j10y5")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_knybl")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_knybl")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_knybl")
+Panel/styles/panel = SubResource("StyleBoxFlat_j10y5")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vk84b")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_a7tkt")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_1g8td")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dytwu"]
+bg_color = Color(0.160809, 0.431255, 0.390594, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+
+[node name="ClipboardView" type="Control"]
+layout_mode = 3
+anchor_left = 0.0260417
+anchor_top = 0.0509259
+anchor_right = 0.961806
+anchor_bottom = 0.975309
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_vk84b")
+script = ExtResource("1_vk84b")
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dytwu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Recently" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/Recently"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Recently/PanelContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "最近使用"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/Recently"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecentBars" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Recently/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Clipboard" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabBar" type="Panel" parent="MarginContainer/HBoxContainer/Clipboard"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Clipboard/TabBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Options" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/PanelContainer"]
+layout_mode = 2
+text = "预设分组"
+
+[node name="SortGroups" type="OptionButton" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Delete" type="Button" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options"]
+layout_mode = 2
+text = "删除预设"
+
+[node name="Close" type="Button" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options"]
+layout_mode = 2
+text = "关闭"
+
+[node name="Contents" type="ScrollContainer" parent="MarginContainer/HBoxContainer/Clipboard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GroupBars" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Clipboard/Contents"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/SortGroups" to="." method="_on_sort_groups_item_selected"]
+[connection signal="button_up" from="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/Delete" to="." method="_on_delete_button_up"]
+[connection signal="button_up" from="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/Close" to="." method="_on_close_button_up"]

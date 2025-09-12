@@ -1,21 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8dvkv6gbsitg"]
+[gd_scene load_steps=4 format=3 uid="uid://c8dvkv6gbsitg"]
 
-[ext_resource type="Script" uid="uid://3eqi32e0x4o0" path="res://scenes/new_object_bar.gd" id="1_l1rg2"]
+[ext_resource type="Theme" uid="uid://bhr4jsbwb5ulv" path="res://style/first_style.tres" id="1_366f4"]
+[ext_resource type="Script" uid="uid://3eqi32e0x4o0" path="res://scripts/new_object_bar.gd" id="1_l1rg2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_366f4"]
+bg_color = Color(0.854902, 0.505882, 0.294118, 0.152941)
 
 [node name="ObjectBar" type="PanelContainer"]
-custom_minimum_size = Vector2(40, 0)
-offset_right = 120.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(120, 0)
+offset_right = 168.0
+offset_bottom = 67.0
+theme = ExtResource("1_366f4")
 script = ExtResource("1_l1rg2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_366f4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Keys" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Keys" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Add" type="Button" parent="VBoxContainer"]
+[node name="Add" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "+"
 
-[connection signal="button_up" from="VBoxContainer/Add" to="." method="_on_add_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Add" to="." method="_on_add_button_up"]

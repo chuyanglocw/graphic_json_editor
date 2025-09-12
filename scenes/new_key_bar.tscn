@@ -1,25 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://dscvrdcffp7tf"]
+[gd_scene load_steps=5 format=3 uid="uid://dscvrdcffp7tf"]
 
 [ext_resource type="PackedScene" uid="uid://hsk66bkbu1r" path="res://scenes/new_raw_value_bar.tscn" id="1_oy6j4"]
-[ext_resource type="Script" uid="uid://cwupuxls4dhdy" path="res://scenes/new_key_bar.gd" id="1_wq050"]
+[ext_resource type="Theme" uid="uid://bhr4jsbwb5ulv" path="res://style/first_style.tres" id="1_qnetq"]
+[ext_resource type="Script" uid="uid://cwupuxls4dhdy" path="res://scripts/new_key_bar.gd" id="1_wq050"]
 [ext_resource type="PackedScene" uid="uid://d1201ja7y07mn" path="res://scenes/new_value_bar.tscn" id="3_kiox8"]
 
 [node name="KeyBar" type="PanelContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_qnetq")
 script = ExtResource("1_wq050")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Key" parent="HBoxContainer" instance=ExtResource("1_oy6j4")]
+[node name="Key" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_oy6j4")]
 layout_mode = 2
 
-[node name="Value" parent="HBoxContainer" instance=ExtResource("3_kiox8")]
+[node name="Value" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_kiox8")]
 layout_mode = 2
 
-[node name="Remove" type="Button" parent="HBoxContainer"]
+[node name="Remove" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "X"
 
-[connection signal="button_up" from="HBoxContainer/Remove" to="." method="_on_remove_button_up"]
+[connection signal="button_up" from="MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_up"]

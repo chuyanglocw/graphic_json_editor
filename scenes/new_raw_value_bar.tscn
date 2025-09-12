@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://hsk66bkbu1r"]
+[gd_scene load_steps=2 format=3 uid="uid://hsk66bkbu1r"]
+
+[ext_resource type="Script" uid="uid://dya211x07glh" path="res://scripts/new_raw_value_bar.gd" id="1_dlaxn"]
 
 [node name="RawValueBar" type="LineEdit"]
 offset_right = 68.5625
 offset_bottom = 31.0
 expand_to_text_length = true
+script = ExtResource("1_dlaxn")

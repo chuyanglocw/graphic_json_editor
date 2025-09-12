@@ -1,6 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhaa1jeucak5p"]
+[gd_scene load_steps=13 format=3 uid="uid://dhaa1jeucak5p"]
 
+[ext_resource type="Script" uid="uid://b20qni0vuiaa2" path="res://scripts/test.gd" id="1_bl13t"]
 [ext_resource type="PackedScene" uid="uid://c8dvkv6gbsitg" path="res://scenes/new_object_bar.tscn" id="1_errlg"]
+[ext_resource type="FontFile" uid="uid://cvdqkd0lnpha0" path="res://fonts/SIMHEI.TTF" id="1_lpvoh"]
+[ext_resource type="PackedScene" uid="uid://bwaxnqdx3tq4x" path="res://scenes/insert_json_dialog.tscn" id="3_iyx0m"]
+[ext_resource type="PackedScene" uid="uid://cucw1u6hc0qho" path="res://scenes/clipboard_view.tscn" id="4_74lek"]
+[ext_resource type="PackedScene" uid="uid://c3s26cab7ik2t" path="res://scenes/copy_bar_save_as_file_dialog.tscn" id="5_j5jx5"]
+
+[sub_resource type="Theme" id="Theme_j5jx5"]
+default_font = ExtResource("1_lpvoh")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl13t"]
+bg_color = Color(0.916174, 0.768763, 0.762736, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_iyx0m"]
+Button/colors/font_color = Color(0.185981, 0.185981, 0.185981, 1)
+LineEdit/colors/font_color = Color(0.165959, 0.107255, 0.0913047, 1)
+Panel/styles/panel = SubResource("StyleBoxFlat_bl13t")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5jx5"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.832924, 0.484664, 0.512141, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74lek"]
+bg_color = Color(0.822642, 0.460764, 0.411303, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyx0m"]
+bg_color = Color(0.932625, 0.932625, 0.932625, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Test" type="Control"]
 layout_mode = 3
@@ -9,6 +50,184 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_j5jx5")
+script = ExtResource("1_bl13t")
 
-[node name="ObjectBar" parent="." instance=ExtResource("1_errlg")]
-layout_mode = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = SubResource("Theme_iyx0m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.389822, 0.217671, 0.167718, 1)
+text = "  JSONEDITOR"
+
+[node name="File" type="LineEdit" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_j5jx5")
+text = "File.json"
+placeholder_text = "FileName"
+expand_to_text_length = true
+
+[node name="Panel" type="Label" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_74lek")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckMode" type="CheckButton" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "开启选择模式"
+
+[node name="Open" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "打开"
+flat = true
+
+[node name="Save" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "保存"
+flat = true
+
+[node name="ClearScreen" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "清空内容"
+flat = true
+
+[node name="Insert" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "插入"
+flat = true
+
+[node name="CopyToClipboard" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "复制到剪切板"
+flat = true
+
+[node name="Clipboard" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "剪切板"
+flat = true
+
+[node name="Help" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "帮助"
+flat = true
+
+[node name="Close" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "关闭"
+flat = true
+
+[node name="WorkSpace" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_iyx0m")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/WorkSpace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/WorkSpace/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ObjectBar" parent="VBoxContainer/WorkSpace/MarginContainer/ScrollContainer" instance=ExtResource("1_errlg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InsertJSONDialog" parent="." instance=ExtResource("3_iyx0m")]
+visible = false
+layout_mode = 1
+
+[node name="CopyBarSaveAsFileDialog" parent="." instance=ExtResource("5_j5jx5")]
+visible = false
+layout_mode = 1
+
+[node name="ClipboardView" parent="." instance=ExtResource("4_74lek")]
+visible = false
+layout_mode = 1
+
+[node name="HelpWindow" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -130.0
+offset_right = 113.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpWindow"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HelpWindow/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="HelpWindow/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "1.Ctrl + 点击 或者 双击 选择 List 或者 Object 内容。
+2.Ctrl + S 打开保存界面。
+3.Ctrl + F 打开打开界面。
+4.Alt + C 打开保存预设界面。
+5.Alt + V 打开剪切板界面。
+6.Alt + I 打开插入文本界面。
+小提示：
+如果剪切板点击了复制后就可以对选择对于的对象或列表直接 Ctrl + V 直接粘贴"
+autowrap_mode = 3
+
+[node name="QuitHelpWindow" type="Button" parent="HelpWindow/VBoxContainer"]
+layout_mode = 2
+text = "确定"
+
+[connection signal="toggled" from="VBoxContainer/Panel/HBoxContainer/CheckMode" to="." method="_on_check_mode_toggled"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/Open" to="." method="_on_open_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/Save" to="." method="_on_save_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/ClearScreen" to="." method="_on_clear_screen_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/Insert" to="." method="_on_insert_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/CopyToClipboard" to="." method="_on_copy_to_clipboard_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/Clipboard" to="." method="_on_clipboard_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/Help" to="." method="_on_help_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/Close" to="." method="_on_close_button_up"]
+[connection signal="clipboard_item_added" from="CopyBarSaveAsFileDialog" to="." method="_on_copy_bar_save_as_file_dialog_clipboard_item_added"]
+[connection signal="group_added" from="CopyBarSaveAsFileDialog" to="." method="_on_copy_bar_save_as_file_dialog_group_added"]
+[connection signal="groups_loaded" from="ClipboardView" to="." method="_on_clipboard_view_groups_loaded"]
+[connection signal="button_up" from="HelpWindow/VBoxContainer/QuitHelpWindow" to="." method="_on_quit_help_window_button_up"]

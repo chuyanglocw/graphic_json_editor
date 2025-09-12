@@ -1,22 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1201ja7y07mn"]
+[gd_scene load_steps=4 format=3 uid="uid://d1201ja7y07mn"]
 
-[ext_resource type="Script" uid="uid://cfwdm4lsgaskf" path="res://scenes/new_value_bar.gd" id="1_1au8i"]
+[ext_resource type="Script" uid="uid://cfwdm4lsgaskf" path="res://scripts/new_value_bar.gd" id="1_1au8i"]
+[ext_resource type="Theme" uid="uid://bhr4jsbwb5ulv" path="res://style/first_style.tres" id="1_saesa"]
 [ext_resource type="PackedScene" uid="uid://hsk66bkbu1r" path="res://scenes/new_raw_value_bar.tscn" id="2_ysh8f"]
 
 [node name="ValueBar" type="HBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_saesa")
 script = ExtResource("1_1au8i")
 
 [node name="Option" type="OptionButton" parent="."]
 layout_mode = 2
+alignment = 1
 selected = 0
 item_count = 3
-popup/item_0/text = "raw"
+popup/item_0/text = "原文"
 popup/item_0/id = 0
-popup/item_1/text = "object"
+popup/item_1/text = "对象"
 popup/item_1/id = 1
-popup/item_2/text = "list"
+popup/item_2/text = "列表"
 popup/item_2/id = 2
 
 [node name="Content" type="MarginContainer" parent="."]

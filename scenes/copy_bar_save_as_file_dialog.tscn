@@ -1,0 +1,136 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3s26cab7ik2t"]
+
+[ext_resource type="Script" uid="uid://dubrb7d4n71nu" path="res://scripts/copy_bar_save_as_file_dialog.gd" id="1_27dyx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27dyx"]
+bg_color = Color(0.219608, 0.309804, 0.384314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xshhf"]
+bg_color = Color(0.401012, 0.624537, 0.811063, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvi1a"]
+bg_color = Color(0.355164, 0.47695, 0.578053, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipdc1"]
+bg_color = Color(0.432831, 0.562391, 0.670477, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_gqjvw"]
+OptionButton/styles/hover = SubResource("StyleBoxFlat_27dyx")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_27dyx")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_27dyx")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_xshhf")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_mvi1a")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_ipdc1")
+
+[node name="CopyBarSaveAsFileDialog" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -95.0
+offset_right = 209.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gqjvw")
+script = ExtResource("1_27dyx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "复制到剪切板"
+
+[node name="Save" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "保存"
+
+[node name="Close" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "关闭"
+
+[node name="SortGroup" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SortGroupLabel" type="Label" parent="MarginContainer/VBoxContainer/SortGroup"]
+layout_mode = 2
+text = "分组"
+
+[node name="SortGroupOption" type="OptionButton" parent="MarginContainer/VBoxContainer/SortGroup"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../GroupName")
+focus_neighbor_top = NodePath("../../HBoxContainer/Save")
+focus_neighbor_right = NodePath("../GroupName")
+selected = 0
+item_count = 1
+popup/item_0/text = "NewGroup"
+popup/item_0/id = 0
+
+[node name="GroupName" type="LineEdit" parent="MarginContainer/VBoxContainer/SortGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "分组名"
+
+[node name="DiaplayName" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DisplaNameLabel" type="Label" parent="MarginContainer/VBoxContainer/DiaplayName"]
+layout_mode = 2
+text = "名字"
+
+[node name="DisplayName" type="LineEdit" parent="MarginContainer/VBoxContainer/DiaplayName"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "显示名字"
+
+[node name="AsValueBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AsValueBar" type="Label" parent="MarginContainer/VBoxContainer/AsValueBar"]
+layout_mode = 2
+text = "作为 ValueBar"
+
+[node name="AsValueBarCheckBox" type="CheckButton" parent="MarginContainer/VBoxContainer/AsValueBar"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_button_up"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/SortGroup/SortGroupOption" to="." method="_on_sort_group_option_item_selected"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/SortGroup/GroupName" to="." method="_on_group_name_text_changed"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/SortGroup/GroupName" to="." method="_on_group_name_text_submitted"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/DiaplayName/DisplayName" to="." method="_on_display_name_text_submitted"]
