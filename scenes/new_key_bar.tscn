@@ -1,14 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://dscvrdcffp7tf"]
 
 [ext_resource type="PackedScene" uid="uid://hsk66bkbu1r" path="res://scenes/new_raw_value_bar.tscn" id="1_oy6j4"]
-[ext_resource type="Theme" uid="uid://bhr4jsbwb5ulv" path="res://style/first_style.tres" id="1_qnetq"]
 [ext_resource type="Script" uid="uid://cwupuxls4dhdy" path="res://scripts/new_key_bar.gd" id="1_wq050"]
 [ext_resource type="PackedScene" uid="uid://d1201ja7y07mn" path="res://scenes/new_value_bar.tscn" id="3_kiox8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiox8"]
+bg_color = Color(0.945996, 0.831247, 0.809283, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="KeyBar" type="PanelContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-theme = ExtResource("1_qnetq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kiox8")
 script = ExtResource("1_wq050")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

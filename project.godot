@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GraphicJSONEditor"
-config/version="beta-0.1"
+config/version="0.1"
 run/main_scene="uid://dhaa1jeucak5p"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(1, 1, 1, 1)
@@ -24,10 +24,6 @@ config/icon="res://icon.svg"
 Items="*res://scripts/Items.gd"
 Manager="*res://scripts/Manager.gd"
 ConfigManager="*res://scripts/ConfigManager.gd"
-
-[display]
-
-window/stretch/mode="canvas_items"
 
 [input]
 

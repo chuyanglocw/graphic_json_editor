@@ -6,6 +6,8 @@ extends Control
 
 func _ready() -> void:
 	Manager.dialog = $InsertJSONDialog
+	if ConfigManager.get_cfg_bool(ConfigManager.FIRST_START,true):
+		$HelpWindow.show()
 	Manager.display_chosen_bar_type_label = $VBoxContainer/Panel/HBoxContainer/Panel
 
 func _process(delta: float) -> void:
@@ -16,16 +18,16 @@ func _process(delta: float) -> void:
 		copy()
 	if Input.is_action_just_released("openclipboard"):
 		$ClipboardView.show()
-	if Input.is_action_just_released("ui_paste"):
-		if clipboard_view.copied_file_chosen:
-			Manager.deal_content(FileAccess.get_file_as_string(clipboard_view.copied_file_chosen))
+	if Input.is_action_just_released("ui_paste") and not Manager.dialog.visible:
+		if clipboard_view.copied_file_chosen and FileAccess.file_exists(clipboard_view.copied_file_chosen):
+			Manager.deal_clipboard_bar_content(FileAccess.get_file_as_string(clipboard_view.copied_file_chosen),clipboard_view.copied_is_value_bar)
 	if Input.is_action_just_released("save"):
 		_on_save_button_up()
 	if Input.is_action_just_released("open"):
 		_on_open_button_up()
 
 func _on_save_button_up() -> void:
-	DisplayServer.file_dialog_show("Saving...",
+	DisplayServer.file_dialog_show(ConfigManager.SAVING,
 	OS.get_executable_path().get_base_dir(),$VBoxContainer/Panel/HBoxContainer/File.text,true,DisplayServer.FILE_DIALOG_MODE_SAVE_FILE,["*.json"],
 	self.save_deal)
 
@@ -40,7 +42,7 @@ func save_deal(status: bool, selected_paths: PackedStringArray, selected_filter_
 	file.close()
 	
 func _on_open_button_up() -> void:
-	DisplayServer.file_dialog_show("Openning...",
+	DisplayServer.file_dialog_show(ConfigManager.OPENNING,
 	OS.get_executable_path().get_base_dir(),"",true,DisplayServer.FILE_DIALOG_MODE_OPEN_FILE,["*.json"],
 	self.open_deal)
 
@@ -59,6 +61,9 @@ func copy() -> void:
 	copy_bar_save_as_file_dialog.show()
 
 func _on_close_button_up() -> void:
+	clipboard_view.save_recent()
+	ConfigManager.cfg[ConfigManager.FIRST_START] = false
+	ConfigManager.save_cfg()
 	get_tree().quit()
 
 func _on_copy_bar_save_as_file_dialog_group_added() -> void:
@@ -75,6 +80,7 @@ func _on_clipboard_button_up() -> void:
 
 func _on_insert_button_up() -> void:
 	Manager.dialog.show()
+	Manager.insert()
 
 func _on_copy_to_clipboard_button_up() -> void:
 	copy_bar_save_as_file_dialog.show()

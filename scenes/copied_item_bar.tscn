@@ -26,6 +26,20 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
+[node name="Paste" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "粘贴"
+
+[node name="Copy" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "复制"
+
+[node name="Delete" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "删除"
+
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_88ebs")
@@ -38,21 +52,8 @@ horizontal_alignment = 1
 
 [node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "名字"
-
-[node name="Paste" type="Button" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "粘贴"
-
-[node name="Copy" type="Button" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "复制"
-
-[node name="Delete" type="Button" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
 size_flags_horizontal = 8
-text = "删除"
+text = "名字"
 
 [connection signal="button_up" from="MarginContainer/HBoxContainer/Paste" to="." method="_on_paste_button_up"]
 [connection signal="button_up" from="MarginContainer/HBoxContainer/Copy" to="." method="_on_copy_button_up"]

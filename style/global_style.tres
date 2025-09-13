@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dugsw20ucmbgn"]
+
+[ext_resource type="FontFile" uid="uid://cvdqkd0lnpha0" path="res://fonts/SIMHEI.TTF" id="1_wc466"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpvoh"]
+bg_color = Color(0.922876, 0.682033, 0.646067, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at5dv"]
+content_margin_top = 10.0
+bg_color = Color(0.277737, 0.639632, 0.620814, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcd4p"]
+bg_color = Color(0.922876, 0.682033, 0.646067, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uacia"]
+content_margin_left = 10.0
+bg_color = Color(0.277737, 0.639632, 0.620814, 1)
+
+[resource]
+default_font = ExtResource("1_wc466")
+default_font_size = 20
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_lpvoh")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_lpvoh")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_lpvoh")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_at5dv")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_at5dv")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jcd4p")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_jcd4p")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_jcd4p")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_uacia")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_uacia")

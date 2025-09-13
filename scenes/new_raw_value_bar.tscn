@@ -6,4 +6,5 @@
 offset_right = 68.5625
 offset_bottom = 31.0
 expand_to_text_length = true
+context_menu_enabled = false
 script = ExtResource("1_dlaxn")

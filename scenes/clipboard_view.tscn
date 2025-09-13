@@ -110,7 +110,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="Recently" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(420, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/Recently"]
@@ -170,6 +170,10 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "删除预设"
 
+[node name="Update" type="Button" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options"]
+layout_mode = 2
+text = "更新预设"
+
 [node name="Close" type="Button" parent="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options"]
 layout_mode = 2
 text = "关闭"
@@ -184,4 +188,5 @@ size_flags_horizontal = 3
 
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/SortGroups" to="." method="_on_sort_groups_item_selected"]
 [connection signal="button_up" from="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/Delete" to="." method="_on_delete_button_up"]
+[connection signal="button_up" from="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/Update" to="." method="_on_update_button_up"]
 [connection signal="button_up" from="MarginContainer/HBoxContainer/Clipboard/TabBar/MarginContainer/Options/Close" to="." method="_on_close_button_up"]

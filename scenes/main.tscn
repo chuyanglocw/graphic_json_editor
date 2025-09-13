@@ -1,14 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://dhaa1jeucak5p"]
 
-[ext_resource type="Script" uid="uid://b20qni0vuiaa2" path="res://scripts/test.gd" id="1_bl13t"]
-[ext_resource type="PackedScene" uid="uid://c8dvkv6gbsitg" path="res://scenes/new_object_bar.tscn" id="1_errlg"]
-[ext_resource type="FontFile" uid="uid://cvdqkd0lnpha0" path="res://fonts/SIMHEI.TTF" id="1_lpvoh"]
-[ext_resource type="PackedScene" uid="uid://bwaxnqdx3tq4x" path="res://scenes/insert_json_dialog.tscn" id="3_iyx0m"]
-[ext_resource type="PackedScene" uid="uid://cucw1u6hc0qho" path="res://scenes/clipboard_view.tscn" id="4_74lek"]
-[ext_resource type="PackedScene" uid="uid://c3s26cab7ik2t" path="res://scenes/copy_bar_save_as_file_dialog.tscn" id="5_j5jx5"]
-
-[sub_resource type="Theme" id="Theme_j5jx5"]
-default_font = ExtResource("1_lpvoh")
+[ext_resource type="Theme" uid="uid://dugsw20ucmbgn" path="res://style/global_style.tres" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://b20qni0vuiaa2" path="res://scripts/main.gd" id="2_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://c8dvkv6gbsitg" path="res://scenes/new_object_bar.tscn" id="3_tipki"]
+[ext_resource type="PackedScene" uid="uid://bwaxnqdx3tq4x" path="res://scenes/insert_json_dialog.tscn" id="4_85g3d"]
+[ext_resource type="PackedScene" uid="uid://c3s26cab7ik2t" path="res://scenes/copy_bar_save_as_file_dialog.tscn" id="5_choun"]
+[ext_resource type="PackedScene" uid="uid://cucw1u6hc0qho" path="res://scenes/clipboard_view.tscn" id="6_ya4ey"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl13t"]
 bg_color = Color(0.916174, 0.768763, 0.762736, 1)
@@ -43,15 +40,22 @@ bg_color = Color(0.932625, 0.932625, 0.932625, 1)
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Test" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpvoh"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_j5jx5")
-script = ExtResource("1_bl13t")
+theme = ExtResource("1_tefeu")
+script = ExtResource("2_o6xl0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -86,6 +90,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_j5jx5")
 text = "File.json"
 placeholder_text = "FileName"
 expand_to_text_length = true
+context_menu_enabled = false
 
 [node name="Panel" type="Label" parent="VBoxContainer/Panel/HBoxContainer"]
 layout_mode = 2
@@ -100,6 +105,7 @@ text = "开启选择模式"
 
 [node name="Open" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "打开"
 flat = true
 
@@ -154,26 +160,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/WorkSpace/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lpvoh")
 
-[node name="ObjectBar" parent="VBoxContainer/WorkSpace/MarginContainer/ScrollContainer" instance=ExtResource("1_errlg")]
+[node name="ObjectBar" parent="VBoxContainer/WorkSpace/MarginContainer/ScrollContainer" instance=ExtResource("3_tipki")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InsertJSONDialog" parent="." instance=ExtResource("3_iyx0m")]
+[node name="InsertJSONDialog" parent="." instance=ExtResource("4_85g3d")]
 visible = false
 layout_mode = 1
 
-[node name="CopyBarSaveAsFileDialog" parent="." instance=ExtResource("5_j5jx5")]
+[node name="CopyBarSaveAsFileDialog" parent="." instance=ExtResource("5_choun")]
 visible = false
 layout_mode = 1
 
-[node name="ClipboardView" parent="." instance=ExtResource("4_74lek")]
+[node name="ClipboardView" parent="." instance=ExtResource("6_ya4ey")]
 visible = false
 layout_mode = 1
 
@@ -185,15 +191,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -113.0
-offset_top = -130.0
-offset_right = 113.0
-offset_bottom = 130.0
+offset_left = -276.5
+offset_top = -157.0
+offset_right = 276.5
+offset_bottom = 157.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HelpWindow"]
 layout_mode = 2
+
+[node name="Title" type="Label" parent="HelpWindow/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "帮助"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="HelpWindow/VBoxContainer"]
+layout_mode = 2
+text = "[第一次启动自动显示]"
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="HelpWindow/VBoxContainer"]
 layout_mode = 2
@@ -211,11 +228,15 @@ text = "1.Ctrl + 点击 或者 双击 选择 List 或者 Object 内容。
 5.Alt + V 打开剪切板界面。
 6.Alt + I 打开插入文本界面。
 小提示：
-如果剪切板点击了复制后就可以对选择对于的对象或列表直接 Ctrl + V 直接粘贴"
+·如果剪切板点击了复制后就可以对选择对于的对象或列表直接 Ctrl + V 直接粘贴。
+·对于ValueBar类型你可以不用选择对应的类型的Bar输入，
+而且输入后是作为Object的键值对，List的值。
+·删除本程序请注意残留在对应系统Godot的user://文件夹（不知道可以上网搜索）和程序所在绝对路径都可能有（没有隐藏文件）。"
 autowrap_mode = 3
 
 [node name="QuitHelpWindow" type="Button" parent="HelpWindow/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "确定"
 
 [connection signal="toggled" from="VBoxContainer/Panel/HBoxContainer/CheckMode" to="." method="_on_check_mode_toggled"]

@@ -5,11 +5,15 @@ extends Control
 @onready var recent_bars: VBoxContainer = $MarginContainer/HBoxContainer/Recently/ScrollContainer/RecentBars
 
 @export var copied_file_chosen: String
+@export var copied_is_value_bar :bool = false
 
 var recent_list :Array[String] = []
 
 signal groups_loaded(groups: Array[String])
+signal groups_loading_faild()
 signal group_deleted()
+
+@export var group_count = 0
 
 func _ready() -> void:
 	update_content()
@@ -23,6 +27,12 @@ func update_content() -> void:
 	var dirs = DirAccess.open(clipboard_folder)
 	if dirs:
 		sort_groups.clear()
+		group_count = dirs.get_directories().size()
+		if group_count <= 0:
+			for child in group_bars.get_children():
+				child.queue_free()
+			groups_loading_faild.emit()
+			return
 		for dir in dirs.get_directories():
 			sort_groups.add_item(dir.get_file())
 		groups_loaded.emit(dirs.get_directories())
@@ -31,6 +41,8 @@ func _on_sort_groups_item_selected(index: int) -> void:
 	update_item_bars(index)
 
 func update_item_bars(index: int) -> void:
+	if group_count == 0:
+		return
 	var item_name = sort_groups.get_item_text(index)
 	var clipboard_folder = ConfigManager.get_path_for(ConfigManager.CLIPBOARD_FOLDER)
 	var clipboard_sort_group_folder = clipboard_folder + "/" + item_name
@@ -44,6 +56,10 @@ func update_item_bars(index: int) -> void:
 		item_bar.paste_button_chosen.connect(self.handle_paste_button_chosen)
 		item_bar.delete_button_chosen.connect(self.handle_delete_button_chosen)
 		group_bars.add_child(item_bar)
+
+func update_content_and_item_bars() -> void:
+	update_content()
+	update_item_bars(sort_groups.selected)
 
 func init_recent() -> void:
 	var recent_file_path = ConfigManager.get_path_for(ConfigManager.CLIPBOARD_RECENTLY_USING)
@@ -61,15 +77,12 @@ func save_recent() -> void:
 	file.flush()
 	file.close()
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		self.save_recent()
-
 func add_to_recent(item_bar_path:String) -> void:
 	if item_bar_path in recent_list:
 		return
 	var item_bar = Items.get_bar_instance(Items.COPIED_ITEM_BAR)
 	item_bar.copied_file_path = item_bar_path
+	item_bar.to_append_group_name = true
 	item_bar.copy_button_chosen.connect(self.handle_copy_button_chosen_2)
 	item_bar.paste_button_chosen.connect(self.handle_paste_button_chosen_2)
 	item_bar.delete_button_chosen.connect(self.delete_from_recent)
@@ -79,23 +92,24 @@ func add_to_recent(item_bar_path:String) -> void:
 func delete_from_recent(item_bar_path:String) -> void:
 	recent_list.erase(item_bar_path)
 
-func handle_copy_button_chosen(copied_file_path:String) -> void:
+func handle_copy_button_chosen(copied_file_path:String, _is_value_bar: bool) -> void:
 	add_to_recent(copied_file_path)
 	copied_file_chosen = copied_file_path
+	copied_is_value_bar = _is_value_bar
 
-func handle_paste_button_chosen(copied_file_path:String) -> void:
+func handle_paste_button_chosen(copied_file_path:String, _is_value_bar: bool) -> void:
 	add_to_recent(copied_file_path)
-	Manager.deal_content(FileAccess.get_file_as_string(copied_file_path))
+	Manager.deal_clipboard_bar_content(FileAccess.get_file_as_string(copied_file_path), _is_value_bar)
 
-func handle_copy_button_chosen_2(copied_file_path:String) -> void:
+func handle_copy_button_chosen_2(copied_file_path:String, _is_value_bar: bool) -> void:
 	copied_file_chosen = copied_file_path
+	copied_is_value_bar = _is_value_bar
 
-func handle_paste_button_chosen_2(copied_file_path:String) -> void:
-	Manager.deal_content(FileAccess.get_file_as_string(copied_file_path))
+func handle_paste_button_chosen_2(copied_file_path:String, _is_value_bar: bool) -> void:
+	Manager.deal_clipboard_bar_content(FileAccess.get_file_as_string(copied_file_path), _is_value_bar)
 
 func handle_delete_button_chosen(copied_file_path:String) -> void:
 	DirAccess.remove_absolute(copied_file_path)
-	#update_item_bars(sort_groups.selected)
 
 func _on_close_button_up() -> void:
 	self.hide()
@@ -111,3 +125,7 @@ func _on_delete_button_up() -> void:
 		print("分组已被移入系统回收站")
 	update_content()
 	group_deleted.emit()
+
+func _on_update_button_up() -> void:
+	update_content_and_item_bars()
+	

@@ -22,12 +22,13 @@ func insert() -> void:
 		#注意只要实现该信号接口就可以作为插入框
 		if not dialog.content_returned.is_connected(self.deal_content):
 			dialog.content_returned.connect(self.deal_content)
+			print("Connected")
 	else:
 		print("请设置插入框")
 
 func deal_content(content: String) -> void:
 	var json_parsed = JSON.parse_string(content)
-	if chosen_bars.size() > 0:
+	if json_parsed and chosen_bars.size() > 0:
 		var chosen_bar = chosen_bars[0]
 		if typeof(json_parsed) == TYPE_DICTIONARY and chosen_bar.bar_type == ConfigManager.BarType.OBJECTBAR:
 			chosen_bar.set_value(json_parsed)
@@ -35,13 +36,31 @@ func deal_content(content: String) -> void:
 			chosen_bar.set_value(json_parsed)
 		else:
 			print("选择添加与选中不匹配")
+	else:
+		print("你可以解析或者没有选中对象或者列表")
+
+#用于Clipboard粘贴 可能出现的 ValueBar的
+func deal_clipboard_bar_content(content:String, is_value_bar: bool) -> void:
+	var json_parsed = JSON.parse_string(content)
+	if json_parsed and chosen_bars.size() > 0:
+		var chosen_bar = chosen_bars[0]
+		if typeof(json_parsed) == TYPE_DICTIONARY and chosen_bar.bar_type == ConfigManager.BarType.OBJECTBAR:
+			chosen_bar.set_value(json_parsed) if not is_value_bar else chosen_bar.set_value({"":json_parsed})
+		elif typeof(json_parsed) == TYPE_ARRAY and chosen_bar.bar_type == ConfigManager.BarType.LISTBAR:
+			chosen_bar.set_value(json_parsed) if not is_value_bar else chosen_bar.set_value([json_parsed])
+		else:
+			print("选择添加与选中不匹配")
+	else:
+		print("你可以解析或者没有选中对象或者列表")
 
 #说明： 用于 Clipboard 功能 type 用于判断是否可以插入对应 Bar 使用
 func save_bars_content(display_name: String, sort_group: String, as_value_bar: bool) -> void:
 	if chosen_bars.size() <= 0:
 		return
 	var chosen_bar = chosen_bars[0]
-	if chosen_bar.bar_type == ConfigManager.BarType.LISTBAR:
+	if as_value_bar:
+		display_name = "value_bar-" + display_name
+	elif chosen_bar.bar_type == ConfigManager.BarType.LISTBAR:
 		display_name = "list_bar-" + display_name
 	elif chosen_bar.bar_type == ConfigManager.BarType.OBJECTBAR:
 		display_name = "object_bar-" + display_name
@@ -65,4 +84,4 @@ func save_bars_content(display_name: String, sort_group: String, as_value_bar: b
 	file.store_string(chosen_bar.get_value())
 	file.flush()
 	file.close()
-	print("Copied Chosen Bar to:",file_final_path)
+	print("保存到路径:",file_final_path)

@@ -8,7 +8,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa3yy"]
-bg_color = Color(0.839438, 0.555708, 0.608224, 0.384314)
+bg_color = Color(0.816019, 0.329956, 0.403589, 0.741176)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -52,11 +52,12 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnyyv"]
-bg_color = Color(0.881482, 0.652928, 0.608175, 0.501961)
+bg_color = Color(0.945996, 0.831247, 0.809283, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+shadow_size = 1
 
 [sub_resource type="ImageTexture" id="ImageTexture_ku4wf"]
 
