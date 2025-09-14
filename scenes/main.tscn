@@ -231,7 +231,7 @@ text = "1.Ctrl + 点击 或者 双击 选择 List 或者 Object 内容。
 ·如果剪切板点击了复制后就可以对选择对于的对象或列表直接 Ctrl + V 直接粘贴。
 ·对于ValueBar类型你可以不用选择对应的类型的Bar输入，
 而且输入后是作为Object的键值对，List的值。
-·删除本程序请注意残留在对应系统Godot的user://文件夹（不知道可以上网搜索）和程序所在绝对路径都可能有（没有隐藏文件）。"
+·删除本程序请注意残留在对应程序所在绝对路径可能有（没有隐藏文件）。"
 autowrap_mode = 3
 
 [node name="QuitHelpWindow" type="Button" parent="HelpWindow/VBoxContainer"]

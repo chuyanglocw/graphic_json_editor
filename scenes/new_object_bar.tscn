@@ -5,6 +5,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_366f4"]
 bg_color = Color(0.854902, 0.505882, 0.294118, 0.152941)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ObjectBar" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 0)

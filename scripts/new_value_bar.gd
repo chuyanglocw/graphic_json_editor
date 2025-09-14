@@ -6,10 +6,15 @@ extends HBoxContainer
 @onready var remove: Button = $Remove
 
 @export var show_remove := false
+@export var ready_to_focus := false
+
+signal call_to_add_value_bar()
+
 
 func _ready() -> void:
 	if show_remove:
 		remove.show()
+	change_content_type(option.selected)
 
 	#TEST String OK
 	#set_value("Hello JSONEditor")
@@ -42,6 +47,9 @@ func change_content_type(index: int) -> Control:
 		content.get_child(0).queue_free()
 	if index == 0:
 		content_bar = Items.get_bar_instance(Items.NEW_RAW_VALUE_BAR)
+		content_bar.submit.connect(self.submit)
+		content_bar.ready_to_focus = self.ready_to_focus
+		self.ready_to_focus = false
 		content.add_child(content_bar)
 	elif index == 1:
 		content_bar = Items.get_bar_instance(Items.NEW_OBJECT_BAR)
@@ -68,3 +76,10 @@ func set_value(value) -> void:
 
 func get_value() -> String:
 	return content.get_child(0).get_value() as String
+
+func to_focus() -> void:
+	if option.selected == 0:
+		content.get_children()[0].grab_focus()
+
+func submit() -> void:
+	call_to_add_value_bar.emit()

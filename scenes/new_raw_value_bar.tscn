@@ -8,3 +8,5 @@ offset_bottom = 31.0
 expand_to_text_length = true
 context_menu_enabled = false
 script = ExtResource("1_dlaxn")
+
+[connection signal="text_submitted" from="." to="." method="_on_text_submitted"]

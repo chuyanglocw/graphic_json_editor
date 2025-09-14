@@ -12,12 +12,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("openinsertdialog"):
-		Manager.dialog.show()
-		Manager.insert()
+		_on_insert_button_up()
 	if Input.is_action_just_released("opensavedialog"):
 		copy()
 	if Input.is_action_just_released("openclipboard"):
-		$ClipboardView.show()
+		_on_clipboard_button_up()
 	if Input.is_action_just_released("ui_paste") and not Manager.dialog.visible:
 		if clipboard_view.copied_file_chosen and FileAccess.file_exists(clipboard_view.copied_file_chosen):
 			Manager.deal_clipboard_bar_content(FileAccess.get_file_as_string(clipboard_view.copied_file_chosen),clipboard_view.copied_is_value_bar)
@@ -58,7 +57,10 @@ func open_deal(status: bool, selected_paths: PackedStringArray, selected_filter_
 
 func copy() -> void:
 	print("启动复制")
-	copy_bar_save_as_file_dialog.show()
+	if copy_bar_save_as_file_dialog.visible:
+		copy_bar_save_as_file_dialog.hide()
+	else:
+		copy_bar_save_as_file_dialog.show()
 
 func _on_close_button_up() -> void:
 	clipboard_view.save_recent()
@@ -76,14 +78,20 @@ func _on_clipboard_view_groups_loaded(groups: Array[String]) -> void:
 	$CopyBarSaveAsFileDialog.load_sort_groups(groups)
 
 func _on_clipboard_button_up() -> void:
-	clipboard_view.show()
+	if $ClipboardView.visible:
+		$ClipboardView.hide()
+	else:
+		$ClipboardView.show()
 
 func _on_insert_button_up() -> void:
-	Manager.dialog.show()
-	Manager.insert()
+	if Manager.dialog.visible:
+		Manager.dialog.hide()
+	else:
+		Manager.dialog.show()
+		Manager.insert()
 
 func _on_copy_to_clipboard_button_up() -> void:
-	copy_bar_save_as_file_dialog.show()
+	copy()
 
 func _on_check_mode_toggled(toggled_on: bool) -> void:
 	ConfigManager.check_mode = toggled_on

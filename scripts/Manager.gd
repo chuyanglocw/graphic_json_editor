@@ -44,9 +44,9 @@ func deal_clipboard_bar_content(content:String, is_value_bar: bool) -> void:
 	var json_parsed = JSON.parse_string(content)
 	if json_parsed and chosen_bars.size() > 0:
 		var chosen_bar = chosen_bars[0]
-		if typeof(json_parsed) == TYPE_DICTIONARY and chosen_bar.bar_type == ConfigManager.BarType.OBJECTBAR:
+		if chosen_bar.bar_type == ConfigManager.BarType.OBJECTBAR:
 			chosen_bar.set_value(json_parsed) if not is_value_bar else chosen_bar.set_value({"":json_parsed})
-		elif typeof(json_parsed) == TYPE_ARRAY and chosen_bar.bar_type == ConfigManager.BarType.LISTBAR:
+		elif chosen_bar.bar_type == ConfigManager.BarType.LISTBAR:
 			chosen_bar.set_value(json_parsed) if not is_value_bar else chosen_bar.set_value([json_parsed])
 		else:
 			print("选择添加与选中不匹配")

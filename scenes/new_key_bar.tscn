@@ -37,4 +37,6 @@ layout_mode = 2
 layout_mode = 2
 text = "X"
 
+[connection signal="text_submitted" from="MarginContainer/HBoxContainer/Key" to="." method="_on_key_text_submitted"]
+[connection signal="call_to_add_value_bar" from="MarginContainer/HBoxContainer/Value" to="." method="_on_value_call_to_add_value_bar"]
 [connection signal="button_up" from="MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_up"]
