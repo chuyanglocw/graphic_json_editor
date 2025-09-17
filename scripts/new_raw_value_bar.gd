@@ -17,5 +17,5 @@ func set_value(value) -> void:
 	else:
 		self.text = str(value)
 
-func _on_text_submitted(new_text: String) -> void:
+func _on_text_submitted(_new_text: String) -> void:
 	submit.emit()

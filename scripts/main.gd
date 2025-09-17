@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		copy()
 	if Input.is_action_just_released("openclipboard"):
 		_on_clipboard_button_up()
-	if Input.is_action_just_released("ui_paste") and not Manager.dialog.visible:
+	if Input.is_action_just_released("pastecopiedcontent") and not Manager.dialog.visible:
 		if clipboard_view.copied_file_chosen and FileAccess.file_exists(clipboard_view.copied_file_chosen):
 			Manager.deal_clipboard_bar_content(FileAccess.get_file_as_string(clipboard_view.copied_file_chosen),clipboard_view.copied_is_value_bar)
 	if Input.is_action_just_released("save"):

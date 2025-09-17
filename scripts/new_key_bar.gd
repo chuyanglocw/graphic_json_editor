@@ -22,7 +22,7 @@ func _on_remove_button_up() -> void:
 func get_value() -> String:
 	return "\"%s\":%s" % [key.text,value.get_value()]
 
-func _on_key_text_submitted(new_text: String) -> void:
+func _on_key_text_submitted(_new_text: String) -> void:
 	value.to_focus()
 
 func to_focus() -> void:

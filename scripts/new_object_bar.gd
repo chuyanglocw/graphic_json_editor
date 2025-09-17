@@ -7,7 +7,6 @@ extends PanelContainer
 var bar_type := ConfigManager.BarType.OBJECTBAR
 
 func _process(delta: float) -> void:
-	
 	if is_mouse_entered and (Input.is_action_just_pressed("choose") or Input.is_action_just_pressed("double_click")):
 		Manager.clear_chosen_bars()
 		Manager.add_to_chosen_bars(self)
@@ -26,7 +25,7 @@ func clear_children() -> void:
 func add_key() -> Control:
 	var key_bar = Items.get_bar_instance(Items.NEW_KEY_BAR)
 	if key_bar:
-		if ConfigManager.get_cfg_bool(ConfigManager.USE_ENTER_ADD_BAR,false):
+		if ConfigManager.get_cfg_bool(ConfigManager.USE_ENTER_ADD_BAR,true):
 			key_bar.call_to_add_value_bar.connect(self.deal_call_add)
 		keys.add_child(key_bar)
 	return key_bar
@@ -34,7 +33,7 @@ func add_key() -> Control:
 func deal_call_add() -> void:
 	var key_bar = Items.get_bar_instance(Items.NEW_KEY_BAR)
 	if key_bar:
-		if ConfigManager.get_cfg_bool(ConfigManager.USE_ENTER_ADD_BAR,false):
+		if ConfigManager.get_cfg_bool(ConfigManager.USE_ENTER_ADD_BAR,true):
 			key_bar.call_to_add_value_bar.connect(self.deal_call_add)
 		key_bar.ready_to_focus = true
 		keys.add_child(key_bar)

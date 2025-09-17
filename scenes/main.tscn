@@ -72,7 +72,7 @@ layout_mode = 2
 theme = SubResource("Theme_iyx0m")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel"]
-layout_mode = 2
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 49.0
 grow_horizontal = 2
@@ -222,13 +222,13 @@ theme_override_constants/margin_bottom = 10
 [node name="Label" type="Label" parent="HelpWindow/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "1.Ctrl + 点击 或者 双击 选择 List 或者 Object 内容。
-2.Ctrl + S 打开保存界面。
-3.Ctrl + F 打开打开界面。
+2.Alt + S 打开保存界面。
+3.Alt + F 打开打开界面。
 4.Alt + C 打开保存预设界面。
 5.Alt + V 打开剪切板界面。
 6.Alt + I 打开插入文本界面。
 小提示：
-·如果剪切板点击了复制后就可以对选择对于的对象或列表直接 Ctrl + V 直接粘贴。
+·如果剪切板点击了复制后就可以对选择对于的对象或列表直接 Alt + D 直接粘贴。
 ·对于ValueBar类型你可以不用选择对应的类型的Bar输入，
 而且输入后是作为Object的键值对，List的值。
 ·删除本程序请注意残留在对应程序所在绝对路径可能有（没有隐藏文件）。"
