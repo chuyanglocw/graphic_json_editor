@@ -71,11 +71,12 @@ func init_recent() -> void:
 				add_to_recent(bar)
 
 func save_recent() -> void:
-	var recent_file_path = ConfigManager.get_path_for(ConfigManager.CLIPBOARD_RECENTLY_USING)
-	var file = FileAccess.open(recent_file_path,FileAccess.WRITE)
-	file.store_string(JSON.stringify(recent_list))
-	file.flush()
-	file.close()
+	if recent_list:
+		var recent_file_path = ConfigManager.get_path_for(ConfigManager.CLIPBOARD_RECENTLY_USING)
+		var file = FileAccess.open(recent_file_path,FileAccess.WRITE)
+		file.store_string(JSON.stringify(recent_list))
+		file.flush()
+		file.close()
 
 func add_to_recent(item_bar_path:String) -> void:
 	if item_bar_path in recent_list:

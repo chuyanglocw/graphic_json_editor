@@ -1,7 +1,8 @@
 extends LineEdit
 
-signal submit()
+class_name ContentEdit
 
+signal submit()
 var ready_to_focus: bool = false
 
 func _ready() -> void:
@@ -9,13 +10,14 @@ func _ready() -> void:
 		grab_focus()
 
 func get_value() -> String:
-	return text
+	if str_to_var(text):
+		return text
+	else:
+		return "\"%s\"" % text
 
 func set_value(value) -> void:
-	if typeof(value) == TYPE_STRING:
-		self.text = "\"%s\"" % value
-	else:
-		self.text = str(value)
+	self.text = str(value)
+	print("Loading raw value: ", self.text)
 
 func _on_text_submitted(_new_text: String) -> void:
 	submit.emit()

@@ -43,8 +43,8 @@ func _on_option_button_item_selected(index: int) -> void:
 
 func change_content_type(index: int) -> Control:
 	var content_bar = null
-	if content.get_child_count() > 0:
-		content.get_child(0).queue_free()
+	for child in content.get_children():
+		child.queue_free()
 	if index == 0:
 		content_bar = Items.get_bar_instance(Items.NEW_RAW_VALUE_BAR)
 		content_bar.submit.connect(self.submit)
@@ -75,7 +75,7 @@ func set_value(value) -> void:
 		content_bar.set_value(value)
 
 func get_value() -> String:
-	return content.get_child(0).get_value() as String
+	return content.get_children()[0].get_value() as String
 
 func to_focus() -> void:
 	if option.selected == 0:
